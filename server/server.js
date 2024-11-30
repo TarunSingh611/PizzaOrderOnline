@@ -39,7 +39,7 @@ app.use(
 app.use(cookieParser());
 app.use(
   cors({
-    origin: '*',
+    origin: process.env.REACT_APP_URL,
     credentials: true,
   })
 );
