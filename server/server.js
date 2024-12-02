@@ -25,10 +25,10 @@ connectDB();
 const app = express();
 
 app.use(cors({
-      origin: true, // Or specify your frontend URL like 'http://localhost:3000'
-      credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
+      origin: true, // Or specify your frontend URL like 'http://localhost:3000'
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
   }));
 
 app.use(express.json());
@@ -41,6 +41,12 @@ app.use(
     resave: false,
     saveUninitialized: false,
     secret: "PizzaDelivery Created By ME | Ilyas Belfar!",
+    cookie: {
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000
+    }
   })
 );
 app.use(cookieParser());

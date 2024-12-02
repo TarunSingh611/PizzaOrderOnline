@@ -80,6 +80,8 @@ module.exports = {
   },
   refreshToken: async (req, res) => {
     try {
+      console.log('All Cookies:', req?.cookies);
+      console.log('Refresh Token:', req?.cookies?.refreshToken);
       let { refreshToken } = req.cookies;
       if (!refreshToken) {
         return res.status(403).json({
