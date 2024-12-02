@@ -82,12 +82,12 @@ module.exports = {
     try {
       let { refreshToken } = req.cookies;
       let cookieToken = req.headers.cookie.split(";")[0].split("=")[1];
-      refreshToken = refreshToken || cookieToken;
-      if (!refreshToken) {
+      if (!refreshToken && !cookieToken) {
         return res.status(403).json({
-          message: "Unauthorized, You must login!",
+          message: `Unauthorized, You must login! ${refreshToken} && ${cookieToken}` ,
         });
       }
+      refreshToken = refreshToken || cookieToken;
       const payload = jwt.verify(
         refreshToken,
         process.env.REFRESH_TOKEN_SECRET_KEY
