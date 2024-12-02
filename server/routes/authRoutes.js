@@ -54,7 +54,7 @@ router.get(
     res.cookie("refreshToken", refreshToken, {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
-      sameSite: "Strict",
+      sameSite: "none", 
     });
     res.redirect(process.env.REACT_APP_URL);
   }
@@ -105,7 +105,7 @@ router.get(
     res.cookie("refreshToken", refreshToken, {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
-      sameSite: "Strict",
+      sameSite: "none", 
     });
     res.redirect(process.env.REACT_APP_URL);
   }

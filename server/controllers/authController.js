@@ -68,7 +68,7 @@ module.exports = {
         res.cookie("refreshToken", refreshToken, {
           maxAge: 1000 * 60 * 60 * 24,
           httpOnly: true,
-          sameSite: "Strict",
+          sameSite: "none", 
         });
         return res.status(200).json({
           token: accessToken,
@@ -116,7 +116,7 @@ module.exports = {
         res.cookie("refreshToken", newRefreshToken, {
           maxAge: expiration * 1000,
           httpOnly: true,
-          sameSite: "Strict",
+          sameSite: "none", 
         });
 
         return res.json({
@@ -150,7 +150,7 @@ module.exports = {
         res.cookie("refreshToken", newRefreshToken, {
           maxAge: expiration * 1000,
           httpOnly: true,
-          sameSite: "Strict",
+          sameSite: "none", 
         });
 
         return res.json({
@@ -184,7 +184,7 @@ module.exports = {
         res.cookie("refreshToken", newRefreshToken, {
           maxAge: expiration * 1000,
           httpOnly: true,
-          sameSite: "Strict",
+          sameSite: "none", 
         });
 
         return res.json({
@@ -389,7 +389,7 @@ module.exports = {
       res.cookie("refreshToken", "PizzaDelivery", {
         maxAge: -1,
         httpOnly: true,
-        sameSite: "Strict",
+        sameSite: "none", 
       });
       return res.json({ message: "Logged out successfully!" });
     } catch (error) {
