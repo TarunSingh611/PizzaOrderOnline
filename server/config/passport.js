@@ -147,7 +147,7 @@ passport.use(
             });
           }
           const Bearer = req.headers.authorization;
-      let cartId =Bearer.split(";")[2].split(" ")[1];
+          let cartId =Bearer.split(";")[2].split(" ")[1];
           let userCart = await Cart.findOne({
             user: existingUser?._id,
             status: "not purchased",

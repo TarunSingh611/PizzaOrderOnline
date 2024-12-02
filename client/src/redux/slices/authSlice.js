@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
+import Cookies from "js-cookie";
 
 const initialState = {
   token: null,
@@ -80,6 +81,11 @@ export const refreshToken = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.post("/auth/refreshToken");
+      if(data.message === "jwt malformed" || data.message === "jwt expired"){
+        localStorage.removeItem("token");
+        localStorage.setItem("isAuthenticated", false);
+        throw new Error("jwt expired");
+      }
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -92,6 +98,12 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.post("/auth/logout");
+      localStorage.removeItem("token");
+      localStorage.setItem("isAuthenticated", false);
+      Cookies.remove("cartId");
+      Cookies.remove("user");
+      window.location.href = "/";
+
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);

@@ -55,7 +55,7 @@ const MainHeader = ({ onToggleColorScheme }) => {
   const { classes } = useStyles();
   const dispatch = useDispatch();
   const { user, isRefreshingToken } = useSelector((state) => state.auth);
-  const loggedUser = Boolean(localStorage.getItem("isAuthenticated"));
+  const loggedUser = localStorage.getItem("isAuthenticated")==="true";
 
   useMemo(() => {
     dispatch(refreshToken());

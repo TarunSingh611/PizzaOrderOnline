@@ -7,7 +7,7 @@ const BagButtonWrapper = () => {
   // eslint-disable-next-line no-unused-vars
   const { loggedIn } = useSelector((state) => state.auth);
   const { numberOfCartItems } = useSelector((state) => state.cart);
-  const isAuthenticated = Boolean(localStorage.getItem("isAuthenticated"));
+  const isAuthenticated = localStorage.getItem("isAuthenticated")==="true";
   return (
     <Indicator
       color="red"

@@ -64,6 +64,8 @@ module.exports = {
         const refreshToken = generateRefreshToken(user, "1d", "local");
         res.cookie("cartId", "PizzaDelivery", {
           maxAge: -1,
+          httpOnly: true,
+          sameSite: "none", 
         });
         res.cookie("refreshToken", refreshToken, {
           maxAge: 1000 * 60 * 60 * 24,
@@ -194,7 +196,7 @@ module.exports = {
         });
       }
     } catch (error) {
-      return res.status(500).json({ message: error.message });
+      return res.status(200).json({ message: error.message });
     }
   },
   updateUser: async (req, res) => {

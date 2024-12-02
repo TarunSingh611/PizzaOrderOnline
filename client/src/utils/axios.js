@@ -15,7 +15,7 @@ instance.interceptors.request.use(
     let user = cookies.get("user");
     let cartId = cookies.get("cartId");
     
-    config.headers.Authorization = `Bearer ${token};user ${user};cartId ${cartId}`;
+    config.headers.Authorization = `Bearer ${token??""};user ${user??""};cartId ${cartId??""}`;
     
     if (config.delayed) {
       return new Promise((resolve) => setTimeout(() => resolve(config), 1000));

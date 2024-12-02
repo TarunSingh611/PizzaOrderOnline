@@ -25,7 +25,7 @@ const OrderPlaced = lazy(() => import("./pages/OrderPlaced"));
 const App = () => {
   // eslint-disable-next-line no-unused-vars
   const { user } = useSelector((state) => state.auth);
-  const isAuthenticated = Boolean(localStorage.getItem("isAuthenticated"));
+  const isAuthenticated = localStorage.getItem("isAuthenticated")==="true";
   const isColorSchemeExists = Boolean(localStorage.getItem("colorScheme"));
   if (!isColorSchemeExists) {
     localStorage.setItem("colorScheme", "light");
