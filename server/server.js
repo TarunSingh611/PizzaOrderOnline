@@ -24,6 +24,13 @@ connectDB();
 
 const app = express();
 
+app.use(cors({
+      origin: true, // Or specify your frontend URL like 'http://localhost:3000'
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
+  }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
@@ -37,12 +44,6 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: [process.env.REACT_APP_URL, "http://localhost:3000", "http://localhost:3001"],
-    credentials: true,
-  })
-);
 
 app.use(passport.initialize());
 // app.use("/test", testRoutes);
