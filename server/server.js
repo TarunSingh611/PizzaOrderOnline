@@ -25,7 +25,7 @@ connectDB();
 const app = express();
 
 app.use(cors({
-      origin: true, // Or specify your frontend URL like 'http://localhost:3000'
+      origin: process.env.REACT_APP_URL,
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
