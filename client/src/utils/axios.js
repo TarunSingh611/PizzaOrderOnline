@@ -8,7 +8,12 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
+  
   (config) => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     if (config.delayed) {
       return new Promise((resolve) => setTimeout(() => resolve(config), 1000));
     }

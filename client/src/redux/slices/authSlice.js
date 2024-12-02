@@ -64,6 +64,8 @@ export const login = createAsyncThunk(
     try {
       const { data } = await axios.post("/auth/login", values);
       if(data && data.token && data.user){
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
         window.location.href = "/";
       }
       return data;
