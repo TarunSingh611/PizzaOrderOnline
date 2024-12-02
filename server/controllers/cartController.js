@@ -7,7 +7,7 @@ module.exports = {
       const { pizzaId, quantity, price } = req.body;
       const { tempUser } = req;
       if (!tempUser) {
-        let { cartId } = req.cookies;
+        let { cartId } = req.headers;
         if (!cartId) {
           const newCart = await Cart.create({
             cartItems: [
@@ -160,7 +160,8 @@ module.exports = {
         }
         return res.json(cart);
       }
-      let { cartId } = req.cookies;
+      const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
       if (!cartId) {
         return res.status(404).json({ message: "Cart not found" });
       }
@@ -194,7 +195,8 @@ module.exports = {
           numberOfCartItems: cart?.cartItems?.length,
         });
       }
-      let { cartId } = req.cookies;
+      const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
       if (!cartId) {
         return res.status(404).json({ message: "Cart not found" });
       }
@@ -363,7 +365,8 @@ module.exports = {
           });
         }
       } else {
-        let { cartId } = req.cookies;
+        const Bearer = req.headers.authorization;
+        let cartId =Bearer.split(";")[2].split(" ")[1];
         if (!cartId) {
           return res.status(404).json({ message: "Cart not found" });
         }

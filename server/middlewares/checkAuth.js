@@ -4,7 +4,8 @@ require("dotenv").config();
 
 const checkAuth = async (req, res, next) => {
   try {
-    let { refreshToken } = req.cookies;
+    const Bearer = req.headers.authorization;
+    let refreshToken =Bearer.split(";")[0].split(" ")[1];
     if (!refreshToken) {
       return next();
     }

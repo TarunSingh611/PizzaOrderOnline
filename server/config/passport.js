@@ -146,7 +146,8 @@ passport.use(
               message: "Incorrect password!",
             });
           }
-          let { cartId } = req?.cookies;
+          const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
           let userCart = await Cart.findOne({
             user: existingUser?._id,
             status: "not purchased",
@@ -216,7 +217,8 @@ passport.use(
           });
           if (existingUser) {
             if (existingUser._id.toString() === tempUser._id.toString()) {
-              let { cartId } = req?.cookies;
+              const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
               let userCart = await Cart.findOne({
                 user: existingUser?._id,
                 status: "not purchased",
@@ -268,7 +270,8 @@ passport.use(
               user.providers.push("google");
             await user.save();
             req.tempUser = null;
-            let { cartId } = req?.cookies;
+            const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
             let userCart = await Cart.findOne({
               user: existingUser?._id,
               status: "not purchased",
@@ -311,7 +314,8 @@ passport.use(
             "google.id": profile.id,
           });
           if (existingUser) {
-            let { cartId } = req?.cookies;
+            const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
             let userCart = await Cart.findOne({
               user: existingUser?._id,
               status: "not purchased",
@@ -371,7 +375,8 @@ passport.use(
           if (!user.providers.includes("google")) user.providers.push("google");
           await user.save();
           req.tempUser = null;
-          let { cartId } = req?.cookies;
+          const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
           let userCart = await Cart.findOne({
             user: existingUser?._id,
             status: "not purchased",
@@ -434,7 +439,8 @@ passport.use(
           });
           if (existingUser) {
             if (existingUser._id.toString() === tempUser._id.toString()) {
-              let { cartId } = req?.cookies;
+              const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
               let userCart = await Cart.findOne({
                 user: existingUser?._id,
                 status: "not purchased",
@@ -486,7 +492,8 @@ passport.use(
               user.providers.push("facebook");
             await user.save();
             req.tempUser = null;
-            let { cartId } = req?.cookies;
+            const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
             let userCart = await Cart.findOne({
               user: existingUser?._id,
               status: "not purchased",
@@ -529,7 +536,8 @@ passport.use(
             "facebook.id": profile.id,
           });
           if (existingUser) {
-            let { cartId } = req?.cookies;
+            const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
             let userCart = await Cart.findOne({
               user: existingUser?._id,
               status: "not purchased",
@@ -591,7 +599,8 @@ passport.use(
             user.providers.push("facebook");
           await user.save();
           req.tempUser = null;
-          let { cartId } = req?.cookies;
+          const Bearer = req.headers.authorization;
+      let cartId =Bearer.split(";")[2].split(" ")[1];
           let userCart = await Cart.findOne({
             user: user?._id,
             status: "not purchased",
