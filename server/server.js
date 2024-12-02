@@ -36,6 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(fileUpload({ useTempFiles: true, tempFileDir: "./tmp" }));
+app.use(cookieParser());
 app.use(
   session({
     resave: false,
@@ -43,13 +44,12 @@ app.use(
     secret: "PizzaDelivery Created By ME | Ilyas Belfar!",
     cookie: {
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      sameSite: 'none',
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000
     }
   })
 );
-app.use(cookieParser());
 
 app.use(passport.initialize());
 // app.use("/test", testRoutes);
