@@ -39,7 +39,7 @@ app.use(
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.REACT_APP_URL,
+    origin: [process.env.REACT_APP_URL, "http://localhost:3000", "http://localhost:3001"],
     credentials: true,
   })
 );

@@ -5,6 +5,9 @@ const { generateRefreshToken } = require("../middlewares/generateTokens");
 const checkAuth = require("../middlewares/checkAuth");
 const authController = require("../controllers/authController");
 const e = require("express");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 router.get("/auth/google", checkAuth, (req, res) => {
   passport.authenticate("google", {
@@ -25,13 +28,13 @@ router.get(
           res.cookie("info", err.toString(), {
             maxAge: 1000 * 5,
           });
-          return res.redirect("http://localhost:3000/auth/login");
+          return res.redirect(process.env.REACT_APP_URL+"/auth/login");
         }
         if (info.message) {
           res.cookie("info", info.message.toString(), {
             maxAge: 1000 * 5,
           });
-          return res.redirect("http://localhost:3000/auth/login");
+          return res.redirect(process.env.REACT_APP_URL+"auth/login");
         }
         if (user) {
           req.user = user;
@@ -53,7 +56,7 @@ router.get(
       httpOnly: true,
       sameSite: "Strict",
     });
-    res.redirect(`http://localhost:3000`);
+    res.redirect(process.env.REACT_APP_URL);
   }
 );
 
@@ -76,13 +79,13 @@ router.get(
           res.cookie("info", err.toString(), {
             maxAge: 1000 * 5,
           });
-          return res.redirect("http://localhost:3000/auth/login");
+          return res.redirect(process.env.REACT_APP_URL+"/auth/login");
         }
         if (info.message) {
           res.cookie("info", info.message.toString(), {
             maxAge: 1000 * 5,
           });
-          return res.redirect("http://localhost:3000/auth/login");
+          return res.redirect(process.env.REACT_APP_URL+"/auth/login");
         }
         if (user) {
           req.user = user;
@@ -104,7 +107,7 @@ router.get(
       httpOnly: true,
       sameSite: "Strict",
     });
-    res.redirect(`http://localhost:3000`);
+    res.redirect(process.env.REACT_APP_URL);
   }
 );
 
