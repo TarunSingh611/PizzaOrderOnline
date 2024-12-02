@@ -80,9 +80,9 @@ module.exports = {
   },
   refreshToken: async (req, res) => {
     try {
-      console.log('All Cookies:', req?.cookies);
-      console.log('Refresh Token:', req?.cookies?.refreshToken);
       let { refreshToken } = req.cookies;
+      let cookieToken = req.headers.cookie.split(";")[0].split("=")[1];
+      refreshToken = refreshToken || cookieToken;
       if (!refreshToken) {
         return res.status(403).json({
           message: "Unauthorized, You must login!",
